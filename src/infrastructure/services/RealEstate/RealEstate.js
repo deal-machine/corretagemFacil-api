@@ -19,4 +19,5 @@ module.exports = class RealEstate {
     return data;
   }
 
+
 }
