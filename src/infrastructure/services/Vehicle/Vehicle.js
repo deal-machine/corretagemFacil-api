@@ -39,7 +39,7 @@ module.exports = class Vehicle {
   }
 
   async getVehicleByFacturer() {
-    const { data } = await this._httpClient.get(`${base_url}//api/v1/vehicles/automaker`, { params: { token: apiToken } })
+    const { data } = await this._httpClient.get(`${base_url}/api/v1/vehicles/automaker`, { params: { token: apiToken } }, config)
     return data;
   }
 }

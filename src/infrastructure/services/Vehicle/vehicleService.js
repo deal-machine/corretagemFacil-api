@@ -1,21 +1,22 @@
 'use strict'
 
 const axios = require('axios')
+
 const Vehicle = require('./Vehicle')
 const vehicle = new Vehicle(axios)
 
-async function getVehicleByFacturer() {
+async function getFacturer() {
   try {
 
     const vehicles = await vehicle.getVehicleByFacturer();
     console.log(vehicles)
   }
   catch (err) {
-    console.error(err)
+    console.error({ "ERROR": err.message })
   }
 }
 
-getVehicleByFacturer()
+getFacturer()
 /**{
         params: {
           token: token,
