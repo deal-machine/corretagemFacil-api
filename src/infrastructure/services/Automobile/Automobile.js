@@ -1,6 +1,6 @@
 'use strict'
 
-const { base_url, token: apiToken } = require('../../http/api')
+const { base_url, token: apiToken, config } = require('../../http/api')
 
 module.exports = class Automobile {
   _httpClient
@@ -25,6 +25,14 @@ module.exports = class Automobile {
 
   async getProposalDomain() {
     const data = await this._httpClient.get(`${base_url}/api/v1/quotes/proposal_domain`, { params: { result_id: 86972, token: apiToken } });
+    return data;
+  }
+
+  async createQuote(quoteDto) {
+    const data = await this._httpClient.post(`${base_url}/api/v1/quotes`,
+      { quote: quoteDto, token: apiToken }
+      , config
+    );
     return data;
   }
 }
