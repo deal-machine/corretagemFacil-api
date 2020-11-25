@@ -10,22 +10,22 @@ module.exports = class Residential {
   }
 
   async getResidentials() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/residentials`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/residentials`, { params: { token: apiToken } });
     return data
   }
 
   async getResidentialsByCPF(cpfDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/residentials`, { params: { token: apiToken, cpf: cpfDto } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/residentials`, { params: { token: apiToken, cpf: cpfDto } });
     return data;
   }
 
   async getResidentialsByCNPJ(cnpjDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/residentials`, { params: { token: apiToken, cnpj: cnpjDto } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/residentials`, { params: { token: apiToken, cnpj: cnpjDto } });
     return data;
   }
 
   async queryResidential(id) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/residentials/${id}`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/residentials/${id}`, { params: { token: apiToken } });
     return data;
   }
 

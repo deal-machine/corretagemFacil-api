@@ -10,22 +10,22 @@ module.exports = class OtherBranch {
   }
 
   async getOtherBranches() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/general_quotes`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/general_quotes`, { params: { token: apiToken } });
     return data;
   }
 
   async getOtherBranchesByCPF(cpfDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/general_quotes`, { params: { token: apiToken, cpf: cpfDto } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/general_quotes`, { params: { token: apiToken, cpf: cpfDto } });
     return data;
   }
 
   async getOtherBranchesByCNPJ(cnpjDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/general_quotes`, { params: { token: apiToken, cnpj: cnpjDto } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/general_quotes`, { params: { token: apiToken, cnpj: cnpjDto } });
     return data;
   }
 
   async queryOtherBranch(id) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/general_quotes/${id}`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/general_quotes/${id}`, { params: { token: apiToken } });
     return data;
   }
 }

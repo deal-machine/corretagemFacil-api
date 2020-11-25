@@ -10,12 +10,12 @@ module.exports = class RealEstate {
   }
 
   async getRealEstate() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/real_state`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/real_state`, { params: { token: apiToken } });
     return data;
   }
 
   async queryRealEstate(id) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/real_state/${id}`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/real_state/${id}`, { params: { token: apiToken } });
     return data;
   }
 

@@ -9,22 +9,22 @@ module.exports = class Automobile {
   }
 
   async getAutomobiles() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/quotes`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/quotes`, { params: { token: apiToken } });
     return data;
   }
 
   async getAutomobilesByCPF(cpfDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/quotes`, { params: { token: apiToken, cpf: cpfDto } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/quotes`, { params: { token: apiToken, cpf: cpfDto } });
     return data;
   }
 
   async getAutomobilesByCNPJ(cnpjDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/quotes`, { params: { token: apiToken, cnpj: cnpjDto } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/quotes`, { params: { token: apiToken, cnpj: cnpjDto } });
     return data;
   }
 
   async getProposalDomain() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/quotes/proposal_domain`, { params: { result_id: 86972, token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/quotes/proposal_domain`, { params: { result_id: 86972, token: apiToken } });
     return data;
   }
 }

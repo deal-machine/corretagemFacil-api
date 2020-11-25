@@ -15,7 +15,7 @@ module.exports = class Vehicle {
   //name = nome do veiculo
 
   async getVehiclesByName(manufacturingYear, modelYear, manufacturerCode, name) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/vehicles/show`, {
+    const data = await this._httpClient.get(`${base_url}/api/v1/vehicles/show`, {
       params: {
         token: apiToken,
         ano_fabricacao: manufacturingYear,
@@ -23,13 +23,13 @@ module.exports = class Vehicle {
         cod_fabricante: manufacturerCode,
         texto: name,
       }
-    }, config)
+    })
     return data;
 
   };
 
   async getVehicleByFipe(fipeDto) {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/vehicles/fipe`, {
+    const data = await this._httpClient.get(`${base_url}/api/v1/vehicles/fipe`, {
       params: {
         token: apiToken,
         fipe: fipeDto
@@ -39,7 +39,7 @@ module.exports = class Vehicle {
   }
 
   async getVehicleByFacturer() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/vehicles/automaker`, { params: { token: apiToken } }, config)
+    const data = await this._httpClient.get(`${base_url}/api/v1/vehicles/automaker`, { params: { token: apiToken } });
     return data;
   }
 }

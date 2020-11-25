@@ -1,6 +1,6 @@
 'use strict'
 
-const { base_url, config } = require('../../http/api')
+const { base_url, token } = require('../../http/api')
 
 module.exports = class Domain {
   _httpClient
@@ -9,8 +9,11 @@ module.exports = class Domain {
   }
 
   async queryDomain() {
-    const { data } = await this._httpClient.get(`${base_url}/api/v1/domain`, config)
+    const data = await this._httpClient.get(`${base_url}/api/v1/domain`, {
+      headers: {
+        'token': token
+      }
+    });
     return data
   }
-
 }

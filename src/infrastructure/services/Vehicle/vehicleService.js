@@ -3,7 +3,7 @@
 const axios = require('axios')
 
 const Vehicle = require('./Vehicle')
-const vehicle = new Vehicle(axios)
+const vehicleClass = new Vehicle(axios)
 
 async function getFacturer() {
   try {
@@ -12,17 +12,30 @@ async function getFacturer() {
     console.log(vehicles)
   }
   catch (err) {
-    console.error({ "ERROR": err.message })
+    console.error({ "ERROR": err })
   }
 }
 
-getFacturer()
-/**{
-        params: {
-          token: token,
-          ano_fabricacao: '2012',
-          ano_model: '2012',
-          cod_fabricante: '193',
-          texto: 'fiesta'
-        }
-      } */
+async function getVehicleByFipe(fipe) {
+  try {
+    const vehicle = await vehicleClass.getVehicleByFipe(fipe);
+    console.log(vehicle)
+  }
+  catch (err) {
+    console.error({ "Error -> ": err.message })
+  }
+}
+
+async function getVehicleByName(manufacturingYear, modelYear, manufacturerCode, name) {
+  try {
+    const vehicle = await vehicleClass.getVehiclesByName(manufacturingYear, modelYear, manufacturerCode, name)
+    console.log(vehicle)
+
+  } catch (err) {
+    console.error({ "ERROR": err })
+  }
+}
+
+//getVehicleByName('2013', '2013', '296', 'intruder')
+
+// getVehicleByFipe('014050-3')

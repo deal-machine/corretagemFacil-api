@@ -6,9 +6,14 @@ const Domain = require('./Domain')
 const domainClass = new Domain(axios)
 
 async function getDomains() {
-  const domains = await domainClass.queryDomain();
-  console.log(domains)
+  try {
+
+    const domains = await domainClass.queryDomain();
+    console.log(domains)
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 
-//getDomains();
+getDomains();
