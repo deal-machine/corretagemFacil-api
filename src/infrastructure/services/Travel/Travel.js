@@ -23,4 +23,10 @@ module.exports = class Travel {
     return data;
   }
 
+  async createTravel(travelDto) {
+    const data = await this._httpClient.post(`${base_url}/api/v1/travels`,
+      { token: apiToken, travel: travelDto });
+    return data;
+  }
+
 }

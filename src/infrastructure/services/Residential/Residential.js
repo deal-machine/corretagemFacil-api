@@ -29,4 +29,11 @@ module.exports = class Residential {
     return data;
   }
 
+  async createResidential(residentialDto) {
+    const data = await this._httpClient.post(`${base_url}/api/v1/residentials`,
+      { residential: residentialDto, token: apiToken }
+    );
+    return data;
+  }
+
 }

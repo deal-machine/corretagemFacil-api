@@ -19,7 +19,8 @@ module.exports = class Condominium {
   }
 
   async listCondominiums() {
-    const data = await this._httpClient.get(`${base_url}/api/v1/condominium`, { params: { token: apiToken } });
+    const data = await this._httpClient.get(`${base_url}/api/v1/condominium`,
+      { params: { token: apiToken } });
     return data;
   }
 
@@ -37,6 +38,17 @@ module.exports = class Condominium {
       {
         params:
           { token: apiToken }
+      });
+    return data;
+  }
+
+  async createCondominium(condominiumDto, condoCoveragesDto, condoLifeCoverageDto) {
+    const data = await this._httpClient.post(`${base_url}/api/v1/condominium`,
+      {
+        token: apiToken,
+        condominium: condominiumDto,
+        condo_coverages: condoCoveragesDto,
+        condo_life_coverage: condoLifeCoverageDto
       });
     return data;
   }

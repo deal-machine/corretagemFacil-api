@@ -19,5 +19,10 @@ module.exports = class RealEstate {
     return data;
   }
 
+  async createRealEstate(realEstateDto) {
+    const data = await this._httpClient.post(`${base_url}/api/v1/real_state`,
+      { residential: realEstateDto, token: apiToken });
+    return data;
+  }
 
 }
