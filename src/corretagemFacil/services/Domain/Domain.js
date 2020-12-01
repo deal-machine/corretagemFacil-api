@@ -9,11 +9,11 @@ module.exports = class Domain {
   }
 
   async queryDomain() {
-    const data = await this._httpClient.get(`${base_url}/api/v1/domain`, {
+    const { data } = await this._httpClient.get(`${base_url}/api/v1/domain`, {
       headers: {
         'token': token
       }
     });
-    return data
+    return data[0].product;
   }
 }

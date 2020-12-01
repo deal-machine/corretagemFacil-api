@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const { base_url, token: apiToken, config } = require('../../http/api')
+const { base_url, token: apiToken, config } = require('../../http/api');
 
 module.exports = class Installment {
   _httpClient
