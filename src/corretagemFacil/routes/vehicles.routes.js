@@ -10,17 +10,14 @@ const vehiclesRouter = Router();
 vehiclesRouter.get('/', async (request, response) => {
   try {
 
-    //consulta codigo do fabricante
-    // const manufacturers = await vehicleClass.getVehicleByFacturer();
-    // const name = 'suzuki';
-    // const manufacturer = manufacturers.filter(manu => manu.fipe === name.toUpperCase())
-    // console.log(manufacturer)
+    const { ano_fabricacao, ano_modelo, codigo_fabricante, texto } = request.body;
+
 
     //consulta veiculo (ano fabricação / ano modelo / codigo do fabricante / texto
-    const vehicles = await vehicleClass.getVehiclesByName('2007', '2007', '193', 'fiesta');
+    const vehicles = await vehicleClass.getVehiclesByName(ano_fabricacao, ano_modelo, codigo_fabricante, texto);
+
 
     return response.json(vehicles)
-    //dynamon sdk aws
 
   } catch (err) { console.error({ 'error': err }) }
 
