@@ -12,10 +12,8 @@ vehiclesRouter.get('/', async (request, response) => {
 
     const { ano_fabricacao, ano_modelo, codigo_fabricante, texto } = request.body;
 
-
     //consulta veiculo (ano fabricação / ano modelo / codigo do fabricante / texto
     const vehicles = await vehicleClass.getVehiclesByName(ano_fabricacao, ano_modelo, codigo_fabricante, texto);
-
 
     return response.json(vehicles)
 
