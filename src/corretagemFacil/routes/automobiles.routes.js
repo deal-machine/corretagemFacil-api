@@ -54,7 +54,7 @@ automobilesRouter.post('/', async (request, response) => {
       return response.json(newQuote)
     }
 
-  } catch (err) { response.json({ 'error': err }) }
+  } catch (err) { response.json({ 'error': err.message }) }
 
 })
 
