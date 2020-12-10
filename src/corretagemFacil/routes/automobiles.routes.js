@@ -3,14 +3,21 @@ const axios = require('axios')
 
 const Automobile = require('../services/Automobile/Automobile')
 const automobileClass = new Automobile(axios)
+const Quote = require('../models/Quote')
 
 const automobilesRouter = Router();
 
-automobilesRouter.get('/', async (request, response) => {
+automobilesRouter.get('/:id', async (request, response) => {
   try {
+    const { id } = request.params;
+
+    const quote = await Quote.get(parseInt(id));
 
     //consulta cotação
-    const { data } = await axios.get('https://api.corretagemfacil-app.com.br/api/v1/quotes/84c05802974946a3612bbf396c3a656bac14b12f?token=cce2108e2f4cf8f3e4f86d68a40f3d1c8d2d271c', { headers: { Accept: '*/*' } })
+    const { data } = await axios
+      .get(quote.link,
+        { headers: { Accept: '*/*' } })
+
 
     return response.json(data)
 
@@ -18,16 +25,36 @@ automobilesRouter.get('/', async (request, response) => {
 
 })
 
+automobilesRouter.get('/', async (request, response) => {
+  try {
+
+    const quotes = await Quote.scan().exec();
+
+    return response.json({ quotes });
+  }
+  catch (err) { response.json({ "ERROR ": err.message }) }
+})
+
 automobilesRouter.post('/', async (request, response) => {
   try {
+
     const quoteDto = request.body;
 
-    //cria uma cotação
     const quote = await automobileClass.createQuote(quoteDto);
 
-    return response.json(quote)
+    if (quote.status === 200) {
 
-  } catch (err) { console.error({ 'error': err }) }
+      const newQuote = await Quote.create({
+        "id": quote.quote_id,
+        "link": quote.link,
+      })
+
+      console.log("Operation was successful");
+
+      return response.json(newQuote)
+    }
+
+  } catch (err) { response.json({ 'error': err }) }
 
 })
 
@@ -74,29 +101,29 @@ module.exports = automobilesRouter;
 //       "name": [vehicle],
 //       "percentage": 100,
 //       "profile": {
-//         "birth_dependent": null,
-//         "college_park_id": null,
-//         "crash_one_year": 0,
-//         "daily_mileage_value": 20,
-//         "dependent_id": 2,
-//         "dependent_sex_id": null,
-//         "dependent_vehicle_id": null,
-//         "driving_course_id": 76,
-//         "have_children_id": 79,
-//         "home_park_id": 17,
-//         "home_type_id": 37,
-//         "office_park_id": 20,
-//         "profession_id": 50[professions],
-//         "same_municipal_id": 14,
-//         "sports_id": 70,
-//         "study_period_id": null,
-//         "theft_one_year": 0,
-//         "total_vehicles": 2,
-//         "use_college_id": 42,
-//         "use_work_id": 32,
-//         "vehicle_use_id": 6,
-//         "work_distance_value": 0,
-//         "zipcode_work": "04018-030"
+        // "birth_dependent": null,
+        // "college_park_id": null,
+        // "crash_one_year": 0,
+        // "daily_mileage_value": 20,
+        // "dependent_id": 2,
+        // "dependent_sex_id": null,
+        // "dependent_vehicle_id": null,
+        // "driving_course_id": 76,
+        // "have_children_id": 79,
+        // "home_park_id": 17,
+        // "home_type_id": 37,
+        // "office_park_id": 20,
+        // "profession_id": 50[professions],
+        // "same_municipal_id": 14,
+        // "sports_id": 70,
+        // "study_period_id": null,
+        // "theft_one_year": 0,
+        // "total_vehicles": 2,
+        // "use_college_id": 42,
+        // "use_work_id": 32,
+        // "vehicle_use_id": 6,
+        // "work_distance_value": 0,
+        // "zipcode_work": "04018-030"
 //       },
 //       "renavam": null,
 //       "zip_code_movement": "04018-030",
